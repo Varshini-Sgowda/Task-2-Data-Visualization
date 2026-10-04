@@ -60,16 +60,20 @@ The analysis is based on the canonical US Enterprise Superstore dataset, represe
 
 ---
 
-## Tools Used
+## Tools Used & Technical Architecture
 
-Only tools verified and utilized in this project are listed:
+In strict adherence to the Elevate Labs Task 2 requirements (*"Tools: Tableau / Power BI; Deliverables: Visual report (PDF or dashboard screenshots)"*):
 
-* **Python 3.14:** Core data engineering and analysis pipeline.
-* **Pandas & NumPy:** Exploratory Data Analysis (EDA), temporal grouping, and derived financial metrics.
-* **Matplotlib & Seaborn:** Custom dark-navy publication-grade dashboard rendering (150 DPI, pixel-perfect alignment).
-* **HTML5, CSS3 & Chart.js:** Standalone, responsive interactive BI report (`dashboard/exported_report/Superscope_Interactive_Report.html`).
-* **Power BI Architecture & DAX:** Full DAX measures library and visual build manual provided in `insights/powerbi_dax_and_visuals_guide.md`.
-* **Git & GitHub:** Version control and portfolio presentation.
+* **Target BI Platform — Microsoft Power BI:**
+  - **Data Modeling & DAX:** Full star-schema architecture, calculated measures library (`Total Sales`, `Total Profit`, `Profit Margin %`, `AOV`, `Discount Capital Burn`), and click-by-click visual layout mapping documented in [`insights/powerbi_dax_and_visuals_guide.md`](insights/powerbi_dax_and_visuals_guide.md).
+  - *Note on Local Environment:* Because Power BI Desktop was not pre-installed in the local Windows execution environment, the complete dashboard suite was rendered using high-resolution Python/Seaborn visualization engines and a standalone interactive HTML5 BI application. Exact manual steps to instantiate the `.pbix` file upon launching Power BI Desktop are fully provided.
+* **Analytical Validation & Data Pipeline — Python 3.14:**
+  - **Pandas & NumPy:** Comprehensive data profiling, auditing, temporal grouping, and discount elasticity calculations.
+  - **Matplotlib & Seaborn:** Custom publication-grade visual rendering engine generating the 6 high-resolution storyboard dashboards (150 DPI).
+  - **Pillow (PIL):** Programmatic compilation of multi-page visual PDF reports.
+* **Interactive Web Report — HTML5, CSS3 & Chart.js:**
+  - Standalone, zero-dependency executive reporting application with responsive KPI cards, dynamic tabs, and embedded Chart.js analytics ([`dashboard/exported_report/Superscope_Interactive_Report.html`](dashboard/exported_report/Superscope_Interactive_Report.html)).
+* **Version Control:** Git & GitHub repository architecture.
 
 ---
 
@@ -223,7 +227,8 @@ Task-2-Data-Visualization/
 │   │   ├── 05_customer_deep_dive.png         # Customer Lifetime Value & Segments
 │   │   └── 06_opportunity_radar.png          # 4-Quadrant Opportunity Matrix
 │   └── exported_report/
-│       └── Superscope_Interactive_Report.html # Responsive interactive standalone BI report
+│       ├── Superscope_Interactive_Report.html # Responsive interactive standalone BI report
+│       └── Superscope_Visual_Report.pdf      # Multi-page executive PDF presentation (3.0 MB)
 │
 ├── analysis/
 │   ├── exploratory_analysis.py              # Automated data profiling & calculation engine
@@ -241,6 +246,7 @@ Task-2-Data-Visualization/
 │
 ├── generate_visualizations.py                # Visual dashboard generation engine
 ├── build_interactive_report.py               # Interactive HTML report generator
+├── export_pdf_report.py                      # Multi-page PDF report compiler
 ├── requirements.txt                          # Python dependencies
 └── README.md                                 # Comprehensive portfolio documentation
 ```
